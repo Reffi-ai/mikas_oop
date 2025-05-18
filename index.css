@@ -1,0 +1,84 @@
+/* login dan logout sampai 180*/
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Pastikan body memenuhi seluruh viewport */
+    background: linear-gradient(to bottom, #D32F2F, #FFEB99);
+    /* background: 
+        url('gambar/mie.png') center top no-repeat, Gambar di atas tengah
+        linear-gradient(to bottom, #D32F2F, #FFEB99); Gradien
+    background-size: 100% 50%, 100% 100%; Gambar 50% tinggi, gradien penuh  
+    background-position: center top, center; Gambar di atas, gradien tetap di tengah
+    background-repeat: no-repeat; Jangan ulangi gambar */
+    color: #FFC300;
+}
+
+.container {
+    text-align: center;
+    justify-content: center; /* Pusatkan secara horizontal */
+    justify-items: center; /* Pusatkan secara vertikal */
+    transform: scale(1.2); /* Atur skala untuk elemen container */
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@font-face {
+    font-family: 'FredokaOne';
+    src: url('fonts/FredokaOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-SemiBold.woff') format('woff');
+}
+
+
+.atas1home, .atas2home {
+    font-size: 1.5vw;
+}
+
+@media (max-width: 700px) {
+    .atas1home, .atas2home {
+    font-size: 5vw;
+    }
+}
+
+
+.atas1home {
+    font-family: 'FredokaOne', sans-serif;
+}
+
+.atas2home {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bawah {
+    font-size: 0.8vw;
+    text-align: center;
+}
+
+a {
+    color: white; /* Ganti dengan warna yang diinginkan */
+    text-decoration: none; /* Hapus garis bawah jika tidak diinginkan */
+}
+
+button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}

@@ -1,0 +1,164 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.dashboard {
+    display: flex;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background: #fff;
+    color: #000;
+    /* margin-top: 7%; */
+}
+
+header {
+    position: sticky;
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    text-align: center;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
+    z-index: 1000;
+    border-bottom: 2px solid #f4c542;
+    box-sizing: border-box;
+}
+
+/* @font-face {
+    font-family: 'FredokaOne';
+    src: url('fonts/FredokaOne.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat.woff') format('woff');
+}
+
+.highlight {
+    font-family: 'FredokaOne', sans-serif;
+    color: #f4c542;
+}
+
+.miee {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    font-size: 1.5rem; 
+} */
+
+h2 {
+    margin-bottom: none;
+}
+
+.menu-aplikasi h2, .ringkasan-keuangan h2 {
+    text-align: center;
+    margin-bottom: none;
+}
+
+.ringkasan-keuangan h2 {
+    margin-top: 5%;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.btn {
+    display: block;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 30%;
+    margin-bottom: 1%;
+    border-radius: 10px; /* Menambahkan lengkungan di keempat sudut */
+    margin: 10px auto;
+    text-decoration: none;
+    gap: 100px; /* Memberikan jarak antar tombol */
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.orange { background: #FFCC00; color: black; }
+.green { background: #28a745; color: white; }
+.dark { background: #222; color: white; }
+
+.orange:hover {
+    background-color: #e3b80a;
+}
+
+.green:hover {
+    background-color: #218838;
+}
+
+.dark:hover {
+    background-color: rgb(65, 62, 62);
+}
+
+.summary {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 25%;
+    color: black;
+}
+
+.utang {
+    background-color: #dc3545;
+    color: white;
+}
+
+.utang:hover {
+    background-color: #c82333;
+}
+
+.card.green { background: #28a745; }
+.card.red { background: #dc3545; }
+.card.blue { background: #007bff; }
+
+.card.green:hover {
+    background-color: #218838;
+}
+
+.card.red:hover {
+    background-color: #c82333;
+}
+
+.card.blue:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .summary { 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .card { 
+        width: 50%; 
+        margin-bottom: 10px; 
+    }
+}
+
+
+/* @media (max-width: 768px) {
+    .summary { flex-direction: column; }
+    .card { width: 50%; margin-bottom: 10px; }
+} */

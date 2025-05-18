@@ -1,0 +1,168 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #FFCC00;
+    color: black;
+    margin: auto;
+}
+
+a:hover {
+    background-color: #e3b80a;
+}
+
+h1, h2 {
+    color: #333;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px;
+}
+
+th {
+    background-color: rgb(108, 104, 104);
+    color: #f8f9fa;
+    border: 1px solid rgb(108, 104, 104);
+}
+
+table, td {
+    border: 1px solid rgb(108, 104, 104);
+}
+
+input, button.tambah {
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid rgb(108, 104, 104);
+    border-radius: 4px;
+}
+
+button.tambah {
+    background-color: #28a745;
+    color: #f8f9fa;
+    cursor: pointer;
+}
+
+button.tambah:hover {
+    background-color: #218838;
+}
+
+button.hapus {
+    background-color: #dc3545; /* merah */
+    color: #f8f9fa;
+    border: none;
+    padding: 6px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.hapus:hover {
+    background-color: #c82333;
+}
+
+button.lunas {
+    background-color: #28a745;
+    color: #f8f9fa;
+    border: none;
+    padding: 6px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.lunas:hover {
+    background-color: #218838;
+}
+
+.centered, .centeredtotal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.centered {
+    width: 100%;
+    /* margin: 0 auto; */
+}
+
+.centeredtotal {
+    width: 50%;
+    margin: 0 auto 20px auto;
+}
+
+table {
+    width: 100%;
+    /* margin: 0 auto; */
+    border-collapse: collapse;
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+        width: 5%;
+    }
+
+    table {
+        width: 1000px; /* Lebar tetap biar bisa discroll horizontal */
+        margin: 0 auto;
+    }
+
+    th, td {
+        white-space: nowrap; /* Supaya isi kolom tidak pecah ke bawah */
+    }
+}
+
+@media (max-width: 768px) {
+    .tambah {
+        display: block;
+        margin: 10px auto; /* Tengah horizontal + jarak atas bawah */
+        width: 100%; /* Biar tombol lebar di layar kecil */
+        max-width: 200px; /* Tapi jangan terlalu lebar */
+    }
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input, button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    th, td {
+        white-space: nowrap;
+    }
+}

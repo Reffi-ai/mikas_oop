@@ -1,0 +1,204 @@
+/* login dan logout sampai 180*/
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Pastikan body memenuhi seluruh viewport */
+    background: linear-gradient(to bottom, #D32F2F, #FFEB99);
+    /* background: 
+        url('gambar/mie.png') center top no-repeat, Gambar di atas tengah
+        linear-gradient(to bottom, #D32F2F, #FFEB99); Gradien
+    background-size: 100% 50%, 100% 100%; Gambar 50% tinggi, gradien penuh  
+    background-position: center top, center; Gambar di atas, gradien tetap di tengah
+    background-repeat: no-repeat; Jangan ulangi gambar */
+    color: #FFC300;
+}
+
+.containerlogin {
+    transform: scale(1.2);
+    text-align: center;
+    justify-content: center; /* Pusatkan secara horizontal */
+    justify-items: center; /* Pusatkan secara vertikal */
+}
+
+@media (max-width: 600px) {
+    .containerlogin {
+        width: 90%;
+    }
+}
+
+
+@font-face {
+    font-family: 'FredokaOne';
+    src: url('fonts/FredokaOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-SemiBold.woff') format('woff');
+}
+
+.atas1 {
+    margin-top: 5%;
+    font-family: 'FredokaOne', sans-serif;
+}
+
+.atas2 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-tengah {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.login-tengah {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .login-tengah {
+    width: 60%;
+    }
+}
+
+
+.lupa-password {
+    font-size: 0.8vw;
+    text-align: center;
+    padding-top: 7px;
+}
+
+@media (max-width: 600px) {
+    .lupa-password {
+    font-size: 2.2vw;
+    }
+}
+
+.belumpunyaakun {
+    font-size: 0.8vw;
+    text-align: center;
+    padding-top: 7px;
+}
+
+@media (max-width: 600px) {
+    .belumpunyaakun {
+    font-size: 2.2vw;
+    }
+}
+
+
+/* .atas1home, .atas2home {
+    font-size: 1.5vw;
+}
+
+@media (max-width: 700px) {
+    .atas1home, .atas2home {
+    font-size: 5vw;
+    } */
+
+.masuk {
+    margin-top: 30px;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .masuk {
+        width: 100%;
+    }
+}
+
+.bawah {
+    font-size: 0.8vw;
+    text-align: center;
+}
+
+a {
+    color: white; /* Ganti dengan warna yang diinginkan */
+    text-decoration: none; /* Hapus garis bawah jika tidak diinginkan */
+}
+
+input {
+    color: white;
+    padding: 8px;
+}
+
+input, button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input {
+    background: red;
+}
+
+input::placeholder {
+    color: white;
+    opacity: 0.8;
+}
+
+.login-password {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 98%;
+    margin: 0 auto; /* Pusatkan secara horizontal */
+}
+
+.login-password input {
+    width: 100%; /* Atur lebar input */
+    margin: 0 auto; /* Pusatkan secara horizontal */
+    display: block; /* Pastikan input dianggap sebagai blok */
+    padding-right: 40px; /* Beri ruang untuk ikon */
+    box-sizing: border-box; /* Pastikan padding tidak memengaruhi lebar total */
+}
+
+.password-icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    top: 50%; /* Posisikan di tengah secara vertikal */
+    right: 4%; /* Jarak dari kanan */
+    transform: translateY(-50%); /* Koreksi agar benar-benar di tengah */
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+    .password-container1 input, .password-container2 input {
+        padding-right: 30px; /* Kurangi ruang untuk ikon */
+    }
+
+    .password-icon {
+        width: 16px; /* Perkecil ikon */
+        height: 16px;
+        right: 8px; /* Kurangi jarak dari kanan */
+    }
+}
+
+/* login dan logout */
+/* login dan logout */
+/* login dan logout */

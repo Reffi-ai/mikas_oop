@@ -1,0 +1,33 @@
+CREATE DATABASE mikass;
+USE mikass;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) NOT NULL,
+  `warmindo_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `transaksi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipe` enum('pemasukan','pengeluaran') NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE utang (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) NOT NULL,
+    nama VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    jumlah DOUBLE NOT NULL,
+    keterangan TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+    status ENUM('Belum Lunas', 'Lunas') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Belum Lunas',
+    tanggal DATETIME NOT NULL,
+    PRIMARY KEY (id)
+);

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIEKAS - Masuk</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="containerlogin">
+        <div class="atas1">
+            <h1>MIEKAS</h1>
+        </div>
+        <div class="atas2">
+            <p>Mie Kenyal Keuangan Digital</p>
+        </div>
+        <div class="login-tengah">
+            <form action="login.php" method="POST" autocomplete="off">
+                <h2>Masuk</h2>
+                <input type="email" name="email" placeholder="Email" autocomplete="off" required>
+                <div class="login-password">
+                    <input type="password" id="password" name="password" placeholder="Kata Sandi" autocomplete="new-password" required>
+                    <img id="togglePassword" src="icon/show.png" alt="Show Password" class="password-icon login-icon">
+                </div>
+                <!-- <p><a href="register.html" class="lupa-password">Lupa password?</a></p> -->
+                <div class="bawah">
+                    <button type="submit" class="masuk">Masuk</button>
+                    <p><a href="register.html" class="belumpunyaakun">Belum punya akun? Daftar</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

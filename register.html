@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIEKAS - Daftar</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<div>
+    <div class="container containerregister">
+        <div class="atas1">
+            <h1>MIEKAS</h1>
+        </div>
+        <div class="atas2">
+            <p>Mie Kenyal Keuangan Digital</p>
+        </div>
+        <div class="tengah register-tengah">
+            <form action="register.php" method="POST" autocomplete="off">
+                <h2>Daftar</h2>
+                <input type="text" name="full_name" placeholder="Nama Lengkap" autocomplete="off" required>
+                <input type="text" name="warmindo_name" placeholder="Nama Warmindo Anda" autocomplete="off" required>
+                <input type="email" name="email" placeholder="Email" autocomplete="off" required>
+                <div class="password-container register-password">
+                    <input type="password" id="password" name="password" placeholder="Buat Kata Sandi" autocomplete="new-password" required>
+                    <img id="togglePassword" src="icon/show.png" alt="Show Password" class="password-icon register-icon">
+                </div>
+                <div class="bawah2">
+                    <button type="submit" class="bawah2-buat-akun">Buat Akun</button>
+                    <p class="sudahpunyaakun">
+                        <a href="login.html">Sudah punya akun? Masuk</a>
+                    </p>
+                </div>  
+            </form>
+        </div>    
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>

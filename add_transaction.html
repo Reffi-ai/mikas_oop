@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Transaksi</title>
+    <link rel="stylesheet" href="add_transaction.css">
+</head>
+<body>
+    <div class="container">
+        <a href="laporan_keuangan.php" class="btn kembali kuning">&#8617; Kembali</a>
+        <h2>Tambah Transaksi</h2>
+        <form method="post" action="add_transaction.php">
+            <div>
+                <label for="tipe">Tipe:</label>
+                <select name="tipe" required>
+                    <option value="pemasukan">Pemasukan</option>
+                    <option value="pengeluaran">Pengeluaran</option>
+                </select>
+            </div>
+            <div>
+                <label for="jumlah">Jumlah:</label>
+                <input type="number" name="jumlah" min="0" required>
+            </div>
+            <div>
+                <label for="deskripsi">Deskripsi:</label>
+                <input type="text" name="deskripsi" required autocomplete="off">
+            </div>
+            <button type="submit">Simpan</button>
+        </form>
+    </div>
+</body>
+</html>

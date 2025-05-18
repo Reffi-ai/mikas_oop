@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Pusatkan secara horizontal */
+    height: 100vh; /* Tinggi penuh layar */
+}
+
+.container {
+    position: relative; /* Jadikan container sebagai referensi posisi */
+    margin: 50px auto; /* Pusatkan container secara horizontal */
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Lebar penuh */
+}
+
+.informasi-pengguna {
+    margin-top: 70px; /* Tambahkan jarak 50px dari elemen di atas */
+    margin-bottom: 30px; /* Tambahkan jarak 20px dari elemen di bawah */
+    text-align: center; /* Pusatkan teks secara horizontal */
+    font-size: 24px; /* Atur ukuran font */
+    font-weight: bold; /* Jadikan teks tebal */
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.btn {
+    padding: 10px 15px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back {
+    background-color: #FFCC00;
+    position: absolute;
+    top: 10px; /* Jarak dari atas */
+    left: 10px; /* Jarak dari kiri */
+    color: black; /* Warna teks */
+    border: none; /* Hilangkan border */
+    padding: 10px; /* Tambahkan padding */
+    border-radius: 5px; /* Tambahkan border radius */
+    cursor: pointer; /* Ubah kursor menjadi pointer */
+}
+
+.exit {
+    background-color: #dc3545;
+    color: white;
+    width: 30%;
+    margin-top: 50px; /* Tambahkan jarak atas */
+}
+
+.back:hover {
+    background-color: #e3b80a;
+}
+
+.exit:hover {
+    background-color: #c82333;
+}
+
+.profile-info {
+    width: 100%; /* Lebar penuh */
+    max-width: 600px; /* Batasi lebar maksimum */
+    margin: 20px auto; /* Pusatkan elemen secara horizontal */
+    font-size: 18px; /* Perbesar ukuran font */
+    line-height: 1.6; /* Tambahkan jarak antar baris */
+}
+
+.profile-info strong {
+    display: inline-block; /* Pastikan elemen dianggap sebagai blok sebaris */
+    vertical-align: middle; /* Selaraskan secara vertikal */
+    width: 150px; /* Atur lebar tetap untuk elemen <strong> */
+    text-align: left; /* Rata kiri teks */
+}
+
+.profile-info input {
+    vertical-align: middle; /* Selaraskan input dengan elemen <strong> */
+    font-size: 18px; /* Perbesar ukuran font */
+    padding: 10px; /* Tambahkan padding */
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+}
