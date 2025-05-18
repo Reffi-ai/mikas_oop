@@ -42,7 +42,7 @@ if (!function_exists('getDatabaseConfig')) {
             'servername' => getenv('DB_SERVER') ?: 'localhost',
             'username'   => getenv('DB_USERNAME') ?: 'root',
             'password'   => getenv('DB_PASSWORD') ?: '',
-            'dbname'     => getenv('DB_NAME') ?: 'mikass',
+            'dbname'     => getenv('DB_NAME') ?: 'mikas_oop',
         ];
     }
 }

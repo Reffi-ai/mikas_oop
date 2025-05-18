@@ -1,5 +1,5 @@
-CREATE DATABASE mikass;
-USE mikass;
+CREATE DATABASE mikas_oop;
+USE mikas_oop;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
