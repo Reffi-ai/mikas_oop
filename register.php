@@ -4,7 +4,7 @@ include 'config.php';
 include 'functions.php';
 
 // Gunakan class UserManager
-$userManager = new UserManager($conn);
+$userManager = new UserManager($pdo);
 
 // Membersihkan input dari karakter berbahaya (menghindari XSS).
 function sanitizeInput(string $input): string {
@@ -47,5 +47,5 @@ function handleRegistration($userManager) {
 }
 
 handleRegistration($userManager);
-$conn->close();
+// $conn->close();
 ?>

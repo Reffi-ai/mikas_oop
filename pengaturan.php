@@ -20,7 +20,7 @@ redirectIfNotLoggedIn('login.html');
 
 // Ambil data user dari database menggunakan UserManager
 require_once 'config.php'; // Pastikan koneksi $conn tersedia
-$userManager = new UserManager($conn);
+$userManager = new UserManager($pdo);
 $user = $userManager->getUserByEmail($_SESSION['email'] ?? '');
 
 if ($user) {

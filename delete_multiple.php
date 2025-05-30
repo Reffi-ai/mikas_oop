@@ -9,12 +9,25 @@ function hapusTransaksiOOP(PDO $pdo, $userId, array $ids): bool {
     }
     $transaksi = new Transaksi($pdo, $userId);
 
-    // Buat query dinamis untuk menghapus hanya milik user terkait
+    // Ambil deskripsi transaksi yang akan dihapus
     $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $querySelect = "SELECT deskripsi FROM transaksi WHERE id IN ($placeholders) AND user_id = ?";
+    $stmtSelect = $pdo->prepare($querySelect);
+    $paramsSelect = array_merge($ids, [$userId]);
+    $stmtSelect->execute($paramsSelect);
+    $deskripsiList = $stmtSelect->fetchAll(PDO::FETCH_COLUMN);
+
+    // Tandai utang lunas jika deskripsi sesuai format utang
+    $utang = new Utang($pdo, $userId);
+    foreach ($deskripsiList as $deskripsi) {
+        if (strpos($deskripsi, 'Utang ') === 0) {
+            $utang->tandaiLunasByDeskripsi($deskripsi);
+        }
+    }
+
+    // Hapus transaksi
     $query = "DELETE FROM transaksi WHERE id IN ($placeholders) AND user_id = ?";
     $stmt = $pdo->prepare($query);
-
-    // Gabungkan $ids dan $userId untuk binding parameter
     $params = array_merge($ids, [$userId]);
     return $stmt->execute($params);
 }
@@ -37,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $berhasil = hapusTransaksiOOP($pdo, $userId, $ids);
         $_SESSION['success_message'] = hasilHapus($berhasil);
     } else {
-        $_SESSION['error_message'] = "Tidak ada data yang dipilih atau user belum login.";
+        $_SESSION['error_message'] = "Tidak ada data yang dipilih.";
     }
 }
 

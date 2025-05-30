@@ -1,23 +1,5 @@
 <?php
 
-if (!function_exists('createMysqliConnection')) {
-    function createMysqliConnection(
-        string $servername,
-        string $username,
-        string $password,
-        string $dbname
-    ): mysqli {
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            error_log("Koneksi gagal: " . $conn->connect_error);
-            throw new Exception("Koneksi MySQLi gagal.");
-        }
-
-        return $conn;
-    }
-}
-
 if (!function_exists('createPdoConnection')) {
     function createPdoConnection(
         string $servername,
@@ -58,13 +40,6 @@ $config = getDatabaseConfig();
 
 try {
     // Variabel global untuk seluruh aplikasi
-    $conn = createMysqliConnection(
-        $config['servername'],
-        $config['username'],
-        $config['password'],
-        $config['dbname']
-    );
-
     $pdo = createPdoConnection(
         $config['servername'],
         $config['username'],

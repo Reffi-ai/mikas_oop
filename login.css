@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh; /* Pastikan body memenuhi seluruh viewport */
-    background: linear-gradient(to bottom, #D32F2F, #FFEB99);
+    background: linear-gradient(to bottom, #D32F2F, #ffda44);
     /* background: 
         url('gambar/mie.png') center top no-repeat, Gambar di atas tengah
         linear-gradient(to bottom, #D32F2F, #FFEB99); Gradien

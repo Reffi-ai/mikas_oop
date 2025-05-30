@@ -4,7 +4,7 @@ include 'config.php';
 include 'functions.php'; // pastikan ini sudah ada
 
 // Inisialisasi objek UserManager
-$userManager = new UserManager($conn);
+$userManager = new UserManager($pdo);
 
 // Fungsi untuk menangani login dengan OOP
 function handleLogin($userManager, $email, $password) {
@@ -48,5 +48,5 @@ function processLogin($userManager) {
 processLogin($userManager);
 
 // Menutup koneksi database setelah selesai.
-$conn->close();
+// $conn->close();
 ?>
