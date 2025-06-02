@@ -14,10 +14,12 @@ function handleLogin($userManager, $email, $password) {
         return "Email tidak ditemukan!";
     }
 
+    // Cek apakah password yang dimasukkan cocok dengan hash di database.
     if (!$userManager->verifyPassword($password, $user['password'])) {
         return "Password salah!";
     }
 
+    // Simpan data user ke session setelah login.
     $userManager->setSessionData($user, $email);
     redirectToDashboard();
 }
