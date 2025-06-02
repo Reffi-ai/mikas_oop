@@ -1,25 +1,29 @@
 <?php
 require 'config.php';
 
-// UserManager sekarang mewarisi Database dan menggunakan PDO
+// Menangani seluruh manajemen pengguna, seperti login, registrasi, verifikasi password, dan pengaturan sesi (session).
 class UserManager {
-    private $pdo;
+    private $pdo; // Objek PDO untuk koneksi database, disimpan sebagai properti kelas agar bisa digunakan di seluruh method.
 
-    public function __construct($pdo) {
+    /// Menyimpan objek PDO ke property protected $pdo yang digunakan untuk koneksi dan query ke database.
+    public function __construct($pdo) { // cons waktu pemanggilan otomatis saat membuat objek dari kelas ini.
         $this->pdo = $pdo;
     }
 
-    public function getUserByEmail($email) {
+    // Mengambil data pengguna berdasarkan email, untuk login atau validasi.
+    public function getUserByEmail($email) { //$email adalah parameter method, bukan properti class. Parameter secara otomatis menjadi variabel lokal yang bisa langsung digunakan di dalam method tersebut.
         $stmt = $this->pdo->prepare("SELECT id, full_name, warmindo_name, password FROM users WHERE email = :email");
         $stmt->execute([':email' => $email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ?: null;
     }
 
+    // Mengecek apakah password yang dimasukkan cocok dengan hash-nya.
     public function verifyPassword($inputPassword, $hashedPassword) {
         return password_verify($inputPassword, $hashedPassword);
     }
 
+    // Menyimpan data user ke dalam session setelah login berhasil.
     public function setSessionData($user, $email) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['full_name'] = $user['full_name'];
@@ -27,6 +31,7 @@ class UserManager {
         $_SESSION['email'] = $email;
     }
 
+    // Menambahkan pengguna baru ke database saat registrasi.
     public function registerUser($fullName, $warmindoName, $email, $hashedPassword) {
         $stmt = $this->pdo->prepare("INSERT INTO users (full_name, warmindo_name, email, password) VALUES (:full_name, :warmindo_name, :email, :password)");
         return $stmt->execute([
@@ -38,26 +43,28 @@ class UserManager {
     }
 }
 
-// Kelas dasar untuk koneksi database (PDO)
+// Kelas induk dasar untuk menyimpan koneksi database ($pdo) dan digunakan oleh kelas Utang dan Transaksi.
 class Database {
-    protected $pdo;
+    protected $pdo; // protected agar dapat diakses oleh kelas turunan
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+    // Menyimpan objek PDO ke property protected $pdo yang digunakan untuk koneksi dan query ke database.
+    public function __construct($pdo) { 
+        $this->pdo = $pdo; 
     }
 }
 
-// // Menangani pencatatan, pengambilan, dan penghapusan data utang per pengguna.
+// Mengelola data utang pelanggan, termasuk mencatat, menampilkan, menandai lunas, dan menghapus.
 class Utang extends Database {
-    private $user_id;
-    private $transaksi;
+    private $user_id; // ID pengguna saat ini.
+    private $transaksi; // Objek dari kelas Transaksi, digunakan untuk mencatat pengeluaran saat utang ditambahkan.
 
     public function __construct($pdo, $user_id) {
-        parent::__construct($pdo);
-        $this->user_id = $user_id;
-        $this->transaksi = new Transaksi($pdo, $user_id);
+        parent::__construct($pdo); // Memanggil konstruktor dari kelas Database untuk menyimpan koneksi PDO.
+        $this->user_id = $user_id;  // Menyimpan ID pengguna (user_id) ke properti objek.
+        $this->transaksi = new Transaksi($pdo, $user_id); // Membuat objek dari class Transaksi dan menyimpannya ke properti $this->transaksi.
     }
 
+    // Mengambil semua utang yang dimiliki pengguna, diurutkan berdasarkan tanggal.
     public function ambilSemua() {
         $sql = "SELECT * FROM utang WHERE user_id = :user_id ORDER BY tanggal DESC";
         $stmt = $this->pdo->prepare($sql);
@@ -65,6 +72,7 @@ class Utang extends Database {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Mengubah status utang menjadi 'Lunas' berdasarkan ID utang.
     public function tandaiLunas($id) {
         $sql = "SELECT nama, keterangan FROM utang WHERE id = :id AND user_id = :user_id";
         $stmt = $this->pdo->prepare($sql);
@@ -86,6 +94,7 @@ class Utang extends Database {
         }
     }
 
+    // Menambahkan utang baru ke database, mencatat pengeluaran, dan mengatur status awal sebagai 'Belum Lunas'.
     public function tambah($nama, $jumlah, $keterangan) {
         $sql = "INSERT INTO utang (user_id, nama, jumlah, keterangan, status, tanggal) 
                 VALUES (:user_id, :nama, :jumlah, :keterangan, 'Belum Lunas', NOW())";
@@ -99,6 +108,7 @@ class Utang extends Database {
         $this->transaksi->catat('pengeluaran', $jumlah, "Utang $nama: $keterangan");
     }
 
+    // Menjumlahkan total utang yang belum lunas berdasarkan ID pengguna.
     public function totalPerPelanggan() {
         $sql = "SELECT nama, SUM(jumlah) AS total 
                 FROM utang 
@@ -109,6 +119,7 @@ class Utang extends Database {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Menghapus utang berdasarkan ID, hanya jika statusnya 'Lunas'.
     public function hapusLunas($id) {
         $sql = "DELETE FROM utang WHERE id = :id AND user_id = :user_id AND status = 'Lunas'";
         $stmt = $this->pdo->prepare($sql);
@@ -118,6 +129,7 @@ class Utang extends Database {
         ]);
     }
     
+    // Menandai utang sebagai lunas berdasarkan deskripsi yang diberikan.
     public function tandaiLunasByDeskripsi($deskripsi) {
         $sql = "UPDATE utang SET status = 'Lunas' WHERE user_id = :user_id AND CONCAT('Utang ', nama, ': ', keterangan) = :deskripsi";
         $stmt = $this->pdo->prepare($sql);
@@ -128,15 +140,16 @@ class Utang extends Database {
     }
 }
 
-// Menangani transaksi pemasukan dan pengeluaran.
+// Mencatat semua transaksi keuangan (pemasukan dan pengeluaran) pengguna, serta menghitung totalnya.
 class Transaksi extends Database {
-    private $user_id;
+    private $user_id; // ID pengguna saat ini.
 
     public function __construct($pdo, $user_id) {
-        parent::__construct($pdo);
-        $this->user_id = $user_id;
+        parent::__construct($pdo); // Memanggil konstruktor dari kelas Database untuk menyimpan koneksi PDO.
+        $this->user_id = $user_id;  // Menyimpan ID pengguna (user_id) ke properti objek.
     }
 
+    // Menyimpan transaksi baru ke tabel transaksi (baik pemasukan maupun pengeluaran).
     public function catat($tipe, $jumlah, $deskripsi) {
         try {
             $stmt = $this->pdo->prepare(
@@ -161,6 +174,7 @@ class Transaksi extends Database {
         }
     }
 
+    // Mengambil semua transaksi pengguna berdasarkan ID, diurutkan berdasarkan tanggal.
     public function getAll() {
         try {
             $stmt = $this->pdo->prepare(
@@ -173,6 +187,7 @@ class Transaksi extends Database {
         }
     }
 
+    // Menjumlahkan seluruh pemasukan user berdasarkan ID pengguna.
     public function totalPemasukan() {
         try {
             $stmt = $this->pdo->prepare(
@@ -187,6 +202,7 @@ class Transaksi extends Database {
         }
     }
 
+    // Menjumlahkan seluruh pengeluaran user berdasarkan ID pengguna.
     public function totalPengeluaran() {
         try {
             $stmt = $this->pdo->prepare(
@@ -201,6 +217,7 @@ class Transaksi extends Database {
         }
     }
     
+    // Menghapus transaksi berdasarkan deskripsi (biasanya saat utang dilunasi).
     public function hapusBerdasarkanDeskripsi($deskripsi) {
         $sql = "DELETE FROM transaksi WHERE user_id = :user_id AND deskripsi = :deskripsi";
         $stmt = $this->pdo->prepare($sql);

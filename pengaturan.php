@@ -23,8 +23,8 @@ require_once 'config.php'; // Pastikan koneksi $conn tersedia
 $userManager = new UserManager($pdo);
 $user = $userManager->getUserByEmail($_SESSION['email'] ?? '');
 
+// Pengambilan data user dan simpan ke session
 if ($user) {
-    // Simpan ke session jika belum ada (opsional, jika ingin update session)
     $_SESSION['full_name'] = $user['full_name'];
     $_SESSION['warmindo_name'] = $user['warmindo_name'];
     $_SESSION['email'] = $_SESSION['email']; // Sudah ada
