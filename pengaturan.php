@@ -23,7 +23,7 @@ require_once 'config.php';
 $userManager = new UserManager($pdo);
 $user = $userManager->getUserByEmail($_SESSION['email'] ?? '');
 
-// Proses update jika form disubmit
+// Proses update jika form disubmit (blok pemrosesan request POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updated = false;
     try {
@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newFullName = $_POST['full_name'] ?? '';
         $newWarmindoName = $_POST['warmindo_name'] ?? '';
 
-        // Cek apakah ada perubahan
+        // Cek apakah ada perubahan, Jika nama lengkap baru berbeda dari yang lama:
         if ($newFullName !== $oldFullName) {
-            $userManager->setFullName($newFullName);
-            $userManager->updateFullName($user['id'], $userManager->getFullName());
-            $_SESSION['full_name'] = $userManager->getFullName();
+            $userManager->setFullName($newFullName); // Set nilai baru ke objek userManager (dengan setter).
+            $userManager->updateFullName($user['id'], $userManager->getFullName()); // Update ke database lewat method updateFullName.
+            $_SESSION['full_name'] = $userManager->getFullName(); // Update session dengan nama lengkap terbaru.
             $updated = true;
         }
         if ($newWarmindoName !== $oldWarmindoName) {

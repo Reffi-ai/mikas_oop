@@ -1,31 +1,39 @@
 <?php
 require 'config.php';
 
+// Kelas induk dasar untuk menyimpan koneksi database ($pdo) dan digunakan oleh kelas Utang dan Transaksi.
+class Database {
+    protected $pdo; // protected agar dapat diakses oleh kelas turunan
+
+    // Menyimpan objek PDO ke property protected $pdo yang digunakan untuk koneksi dan query ke database.
+    public function __construct($pdo) { 
+        $this->pdo = $pdo; 
+    }
+}
+
 // Menangani seluruh manajemen pengguna, seperti login, registrasi, verifikasi password, dan pengaturan sesi (session).
-class UserManager {
-    private $pdo; // Objek PDO untuk koneksi database, disimpan sebagai properti kelas agar bisa digunakan di seluruh method.
+class UserManager extends Database {
     private $full_name;
     private $warmindo_name;
 
-    // Menyimpan objek PDO ke property protected $pdo yang digunakan untuk koneksi dan query ke database.
-    public function __construct($pdo) { // cons waktu pemanggilan otomatis saat membuat objek dari kelas ini.
-        $this->pdo = $pdo;
+    public function __construct($pdo) {
+        parent::__construct($pdo); // panggil konstruktor Database
     }
 
-    // Getter & Setter untuk full_name
-    public function getFullName() {
-        return $this->full_name;
-    }
+    // Setter & Getter untuk full_name
     public function setFullName($full_name) {
         $this->full_name = $full_name;
     }
-
-    // Getter & Setter untuk warmindo_name
-    public function getWarmindoName() {
-        return $this->warmindo_name;
+    public function getFullName() {
+        return $this->full_name;
     }
+
+    // Setter & Getter untuk warmindo_name
     public function setWarmindoName($warmindo_name) {
         $this->warmindo_name = $warmindo_name;
+    }
+    public function getWarmindoName() {
+        return $this->warmindo_name;
     }
 
     // Update nama lengkap di database
@@ -76,16 +84,6 @@ class UserManager {
             ':email' => $email,
             ':password' => $hashedPassword
         ]);
-    }
-}
-
-// Kelas induk dasar untuk menyimpan koneksi database ($pdo) dan digunakan oleh kelas Utang dan Transaksi.
-class Database {
-    protected $pdo; // protected agar dapat diakses oleh kelas turunan
-
-    // Menyimpan objek PDO ke property protected $pdo yang digunakan untuk koneksi dan query ke database.
-    public function __construct($pdo) { 
-        $this->pdo = $pdo; 
     }
 }
 
