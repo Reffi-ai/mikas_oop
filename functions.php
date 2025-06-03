@@ -4,10 +4,46 @@ require 'config.php';
 // Menangani seluruh manajemen pengguna, seperti login, registrasi, verifikasi password, dan pengaturan sesi (session).
 class UserManager {
     private $pdo; // Objek PDO untuk koneksi database, disimpan sebagai properti kelas agar bisa digunakan di seluruh method.
+    private $full_name;
+    private $warmindo_name;
 
     // Menyimpan objek PDO ke property protected $pdo yang digunakan untuk koneksi dan query ke database.
     public function __construct($pdo) { // cons waktu pemanggilan otomatis saat membuat objek dari kelas ini.
         $this->pdo = $pdo;
+    }
+
+    // Getter & Setter untuk full_name
+    public function getFullName() {
+        return $this->full_name;
+    }
+    public function setFullName($full_name) {
+        $this->full_name = $full_name;
+    }
+
+    // Getter & Setter untuk warmindo_name
+    public function getWarmindoName() {
+        return $this->warmindo_name;
+    }
+    public function setWarmindoName($warmindo_name) {
+        $this->warmindo_name = $warmindo_name;
+    }
+
+    // Update nama lengkap di database
+    public function updateFullName($user_id, $full_name) {
+        $stmt = $this->pdo->prepare("UPDATE users SET full_name = :full_name WHERE id = :id");
+        return $stmt->execute([
+            ':full_name' => $full_name,
+            ':id' => $user_id
+        ]);
+    }
+
+    // Update nama warmindo di database
+    public function updateWarmindoName($user_id, $warmindo_name) {
+        $stmt = $this->pdo->prepare("UPDATE users SET warmindo_name = :warmindo_name WHERE id = :id");
+        return $stmt->execute([
+            ':warmindo_name' => $warmindo_name,
+            ':id' => $user_id
+        ]);
     }
 
     // Mengambil data pengguna berdasarkan email, untuk login atau validasi.

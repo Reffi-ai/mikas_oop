@@ -1,4 +1,15 @@
-const goBack = () => window.history.back(); // Fungsi untuk kembali ke halaman sebelumnya
+// Fungsi untuk kembali ke halaman sebelumnya
+const goBack = () => {
+    window.location.href = 'dasboard.php';
+};
+
+// Aktifkan edit mode saat tombol Edit diklik
+document.getElementById('editBtn').onclick = function() {
+    document.getElementById('fullName').removeAttribute('readonly');
+    document.getElementById('warmindoName').removeAttribute('readonly');
+    document.getElementById('saveBtn').disabled = false;
+    this.disabled = true; // tombol Edit jadi tidak bisa diklik lagi
+};
 
 const handleExitClick = (event) => {
     console.log('Tombol exit diklik');
